@@ -8,7 +8,9 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Email")
     phone = models.CharField(max_length=35, verbose_name="Телефон", **NULLABLE)
     tg_name = models.CharField(max_length=20, verbose_name="Телеграмм", **NULLABLE)
-    avatar = models.ImageField(upload_to="users/avatar/", verbose_name="Аватар",  **NULLABLE)
+    avatar = models.ImageField(upload_to="users/avatar/", verbose_name="Аватар", **NULLABLE)
+
+    token = models.CharField(max_length=100, verbose_name="Token", **NULLABLE)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
