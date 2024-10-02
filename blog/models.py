@@ -1,4 +1,5 @@
 from django.db import models
+
 from users.models import NULLABLE
 
 class Blog(models.Model):
@@ -15,3 +16,5 @@ class Blog(models.Model):
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
         ordering = ['title', 'description']
+
+

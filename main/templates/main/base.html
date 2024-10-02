@@ -120,6 +120,7 @@
     </symbol>
 </svg>
 
+
 <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
     <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
             id="bd-theme"
@@ -174,40 +175,78 @@
 
 
 <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
-{% include 'includes/inc_menu.html' %}
+    {% include 'includes/inc_menu.html' %}
 </nav>
 
-<main>
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Сервис email-рассылок Aririn</h1>
-                <p class="lead text-body-secondary">Отправляйте письма, привлекайте больше клиентов</p>
-                <p>
-                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                </p>
+<div class="container-fluid">
+    <div class="row">
+        {% if user.is_authenticated %}
+        <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+                 aria-labelledby="sidebarMenuLabel">
+                <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                               href="{% url 'main:list_client' %}">
+                                <svg class="bi">
+                                    <use xlink:href="#house-fill"></use>
+                                </svg>
+                                Клиенты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                               href="{% url 'main:list_message' %}">
+                                <svg class="bi">
+                                    <use xlink:href="#house-fill"></use>
+                                </svg>
+                                Сообщения
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                               href="{% url 'main:list_mailing_list' %}">
+                                <svg class="bi">
+                                    <use xlink:href="#house-fill"></use>
+                                </svg>
+                                Рассылка
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                               href="{% url 'main:list_attempt_to_send' %}">
+                                <svg class="bi">
+                                    <use xlink:href="#house-fill"></use>
+                                </svg>
+                                Попытка рссылки
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
-    {% block content %}
-    {% endblock %}
+        {% endif %}
 
-</main>
-
-<footer class="text-body-secondary py-5">
-    <div class="container">
-        <p class="float-end mb-1">
-            <a href="#">Back to top</a>
-        </p>
-        <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                href="../getting-started/introduction/">getting started guide</a>.</p>
+        <main class="col-md-8 ms-sm-auto col-lg-9 px-md-4">
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">Сервис email-рассылок Aririn</h1>
+                        <p class="lead text-body-secondary">Отправляйте письма, привлекайте больше клиентов</p>
+                    </div>
+                </div>
+            </section>
+            {% block content %}
+            {% endblock %}
+        </main>
     </div>
-</footer>
+</div>
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>

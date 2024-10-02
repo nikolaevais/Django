@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'main:create_mailing_list' %}">Добавить рассылку</a>
+    <div class="row text-center">
+        {% for mailing_list in object_list %}
+        {% if perms.mailing_list.set_active or user == mailing_list.owner %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h5 class="my-0 font-weight-normal">{{ mailing_list.name }}</h5>
+                    <h5 class="my-0 font-weight-normal">{{ mailing_list.is_active }}</h5>
+                    <a type="button" class="btn btn-outline-primary"
+                       href="{% url 'main:view_mailing_list' mailing_list.pk %}">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

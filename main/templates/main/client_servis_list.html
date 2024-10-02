@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'main:create_client' %}">Добавить клиента</a>
+    <div class="row text-center">
+        {% for client in object_list %}
+        {% if perms.client.set_active or user == client.owner %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h5 class="my-0 font-weight-normal">{{ client.last_name }}</h5>
+                    <h5 class="my-0 font-weight-normal">{{ client.first_name }}</h5>
+                    <a type="button" class="btn btn-outline-primary"
+                       href="{% url 'main:view_client' client.pk %}">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="col-12 mb-5">
+    <div class="row text-center">
+        {% for attempt_to_send in object_list %}
+        {% if user == mailing_list.owner %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h5 class="my-0 font-weight-normal">{{ attempt_to_send.mailing_list }}</h5>
+                    <h5 class="my-0 font-weight-normal">{{ attempt_to_send.status_attempt }}</h5>
+                    <a type="button" class="btn btn-outline-primary"
+                       href="{% url 'main:view_attempt_to_send' attempt_to_send.pk %}">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
