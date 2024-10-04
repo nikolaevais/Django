@@ -114,12 +114,20 @@ class Mailing_listCreateView(CreateView, LoginRequiredMixin):
     form_class = Mailing_listForm
     success_url = reverse_lazy('main:list_mailing_list')
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
     def form_valid(self, form):
         mailing_list = form.save()
         user = self.request.user
         mailing_list.owner = user
         mailing_list.save()
         return super().form_valid(form)
+
+
 
 
 class Mailing_listListView(ListView):

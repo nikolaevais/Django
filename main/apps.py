@@ -13,6 +13,5 @@ class UsersConfig(AppConfig):
     name = 'users'
 
     def ready(self):
-         from users.management.commands.runapscheduler import Command
-         sleep(2)
-         Command()
+        from users.management.commands.runapscheduler import Command
+        Command().handle()

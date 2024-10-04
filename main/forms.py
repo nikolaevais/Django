@@ -30,6 +30,11 @@ class Mailing_listForm(StyleFormMixin, ModelForm):
         model = Mailing_list
         exclude = ("owner",)
 
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['client'].queryset = Client_servis.objects.filter(owner=user)
+        self.fields['message'].queryset = Message.objects.filter(owner=user)
+
 
 class Mailing_listModeratorForm(StyleFormMixin, ModelForm):
     class Meta:
